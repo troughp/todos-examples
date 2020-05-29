@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(maxAge = 3600)
 @RequestMapping("api/todos")
 
 public class TodoController {
