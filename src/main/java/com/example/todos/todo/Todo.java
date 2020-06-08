@@ -15,10 +15,10 @@ public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String description;
     private boolean complete;
     private String title;
+
     public Todo(String description, boolean complete, String title){
         this.description = description;
         this.complete = complete;

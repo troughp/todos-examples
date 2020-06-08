@@ -1,16 +1,14 @@
 package com.example.todos.todo;
 
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-@RestController
 @CrossOrigin(maxAge = 3600)
+@RestController
 @RequestMapping("api/todos")
-
 public class TodoController {
 
     private TodoRepository todoRepository;
@@ -38,12 +36,11 @@ public class TodoController {
     @PutMapping("/{id}")
     public Todo editTodo(@PathVariable long id, @RequestBody Todo todo){
         Todo existingTodo = new Todo();
-
         try{
             existingTodo = todoRepository.findById(id).get();
+            existingTodo.setTitle(todo.getTitle());
             existingTodo.setDescription(todo.getDescription());
             existingTodo.setComplete(todo.isComplete());
-            existingTodo.setTitle(todo.getTitle());
             todoRepository.save(existingTodo);
         } catch(NoSuchElementException e) {
             System.out.println(e.getMessage());
@@ -56,5 +53,4 @@ public class TodoController {
     public void deleteTodo(@PathVariable long id){
         todoRepository.deleteById(id);
     }
-
 }
